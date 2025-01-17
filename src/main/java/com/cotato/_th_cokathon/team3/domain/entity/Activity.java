@@ -48,5 +48,10 @@ public class Activity extends BaseTimeEntity {
 		this.category = category;
 		this.imageUrl = imageUrl;
 	}
+
+	//  Activity의 participantCount 1씩 증가하도록 반영
+	public void incrementParticipantCount() {
+		this.participantCount++;
+	}
 }
 
