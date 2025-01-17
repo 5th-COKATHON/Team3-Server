@@ -33,6 +33,10 @@ public class ActivityThreadService {
         Activity activity = activityRepository.findById(activityId)
                 .orElseThrow(() -> new RuntimeException("Activity not found"));
 
+        // 인증 추가 시 참가자 수 증가
+        activity.incrementParticipantCount();
+        activityRepository.save(activity);
+
         String imageUrl = image != null ? s3Uploader.uploadFile(image, ACTIVITY_THREAD_FOLDER_NAME) : null;
 
         ActivityThread thread = ActivityThread.builder()
