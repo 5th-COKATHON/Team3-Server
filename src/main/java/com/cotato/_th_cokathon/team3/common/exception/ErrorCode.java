@@ -16,6 +16,11 @@ public enum ErrorCode {
 	FILE_EXTENSION_FAULT(HttpStatus.BAD_REQUEST, "해당 파일 확장자 명이 존재하지 않습니다.", "F-001"),
 	FILE_IS_EMPTY(HttpStatus.BAD_REQUEST, "파일이 비어있습니다", "F-002"),
 
+	//Activity
+	ACTIVITY_NOT_FOUND(HttpStatus.NOT_FOUND, "Activity를 찾을 수 없습니다.", "A-001"),
+
+	CATEGORY_NOT_FOUND(HttpStatus.NOT_FOUND, "Category를 찾을 수 없습니다.", "C-001"),
+
 	//500
 	INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "서버 내부에서 에러가 발생하였습니다.", "COMMON-002");
 
