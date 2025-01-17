@@ -2,6 +2,7 @@ package com.cotato._th_cokathon.team3.api.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cotato._th_cokathon.team3.api.dto.request.ActivityCreateRequest;
 import com.cotato._th_cokathon.team3.api.dto.response.ActivityCreateResponse;
+import com.cotato._th_cokathon.team3.api.dto.response.ActivityDetailResponse;
 import com.cotato._th_cokathon.team3.api.dto.response.ActivityListResponse;
 import com.cotato._th_cokathon.team3.common.dto.DataResponse;
 import com.cotato._th_cokathon.team3.common.exception.ImageException;
@@ -39,6 +41,14 @@ public class ActivityController {
 		@RequestParam(defaultValue = "all", required = false) String filter) {
 		ActivityListResponse activities = activityService.findActivities(page, size, sort, filter);
 		return ResponseEntity.ok(DataResponse.from(activities));
+	}
+
+	@GetMapping("{activityId}")
+	@Operation(summary = "액티비티 단건 조회", description = "액티비티 단건 조회")
+	public ResponseEntity<DataResponse<ActivityDetailResponse>> findActivity(@PathVariable Long activityId) {
+		return ResponseEntity.ok(
+			DataResponse.from(
+				activityService.findActivity(activityId)));
 	}
 
 	@PostMapping("")

@@ -8,8 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cotato._th_cokathon.team3.api.dto.request.ActivityCreateRequest;
+import com.cotato._th_cokathon.team3.api.dto.response.ActivityDetailResponse;
 import com.cotato._th_cokathon.team3.api.dto.response.ActivityListResponse;
 import com.cotato._th_cokathon.team3.api.dto.response.ActivityResponse;
+import com.cotato._th_cokathon.team3.common.exception.AppException;
+import com.cotato._th_cokathon.team3.common.exception.ErrorCode;
 import com.cotato._th_cokathon.team3.common.exception.ImageException;
 import com.cotato._th_cokathon.team3.common.util.S3Uploader;
 import com.cotato._th_cokathon.team3.domain.entity.Activity;
@@ -70,4 +73,11 @@ public class ActivityService {
 
 		return activityRepository.save(build).getId();
 	}
+
+	public ActivityDetailResponse findActivity(Long activityId) {
+		Activity activity = activityRepository.findById(activityId)
+			.orElseThrow(() -> new AppException(ErrorCode.ACTIVITY_NOT_FOUND));
+		return ActivityDetailResponse.from(activity);
+	}
+
 }
