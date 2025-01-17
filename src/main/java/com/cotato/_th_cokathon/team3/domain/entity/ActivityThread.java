@@ -12,6 +12,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -34,4 +35,11 @@ public class ActivityThread extends BaseTimeEntity {
 
 	@Column(name = "image_url")
 	private String imageUrl;
+
+	@Builder
+	public ActivityThread(Activity activity, String description, String imageUrl) {
+		this.activity = activity;
+		this.description = description;
+		this.imageUrl = imageUrl;
+	}
 }

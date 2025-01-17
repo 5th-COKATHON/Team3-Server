@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -24,4 +25,9 @@ public class Category extends BaseTimeEntity {
 
 	@Column(name = "name", nullable = false)
 	private String name;
+
+	@Builder
+	public Category(String name) {
+		this.name = name;
+	}
 }
