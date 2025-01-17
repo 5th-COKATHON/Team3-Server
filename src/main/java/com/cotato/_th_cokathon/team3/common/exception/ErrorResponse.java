@@ -3,7 +3,7 @@ package com.cotato._th_cokathon.team3.common.exception;
 import jakarta.servlet.http.HttpServletRequest;
 
 public record ErrorResponse(
-	int code,
+	String code,
 	String message,
 	String method,
 	String requestURI
