@@ -27,7 +27,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor(access = AccessLevel.PROTECTED)
 @RequestMapping("/api/activities")
 public class ActivityController {
-
 	private final ActivityService activityService;
 
 	@GetMapping("")
