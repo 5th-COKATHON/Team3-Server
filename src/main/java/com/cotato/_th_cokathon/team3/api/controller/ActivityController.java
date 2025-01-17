@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -31,8 +32,12 @@ public class ActivityController {
 
 	@GetMapping("")
 	@Operation(summary = "액티비티 전체 조회", description = "전체 액티비티 조회")
-	public ResponseEntity<DataResponse<ActivityListResponse>> findActivities() {
-		ActivityListResponse activities = activityService.findActivities();
+	public ResponseEntity<DataResponse<ActivityListResponse>> findActivities(
+		@RequestParam(defaultValue = "0") int page,
+		@RequestParam(defaultValue = "10") int size,
+		@RequestParam(defaultValue = "time") String sort,
+		@RequestParam(defaultValue = "all", required = false) String filter) {
+		ActivityListResponse activities = activityService.findActivities(page, size, sort, filter);
 		return ResponseEntity.ok(DataResponse.from(activities));
 	}
 
