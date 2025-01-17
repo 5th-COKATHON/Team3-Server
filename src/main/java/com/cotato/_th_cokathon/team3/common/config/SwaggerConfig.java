@@ -22,6 +22,7 @@ public class SwaggerConfig {
 
 		return new OpenAPI()
 			.addServersItem(new Server().url("http://localhost:8080").description("Local Server"))
+			.addServersItem(new Server().url("https://snap-chain.kro.kr").description("Production Server"))
 			.addServersItem(new Server().url("http://13.209.40.241:8080").description("Ec2 Server"));
 	}
 
